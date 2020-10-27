@@ -18,13 +18,9 @@ const moviesQuery = selectorFamily({
         Released: string;
       }> = await callMovieApi(name as string);
 
-      if (response.data.Error) {
-        throw response.data.Error;
-      }
-
       return response.data;
     } catch (err) {
-      console.warn('Fatal occurred');
+      throw 'Fatal Error';
     }
   },
 });

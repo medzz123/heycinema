@@ -10,8 +10,8 @@ import { useRecoilValueLoadable } from 'recoil';
 import { Center } from './Home.styles';
 
 const Home = () => {
-  const [search, setSearch] = React.useState('');
-  const [queryDebounced, setQueryDebounced] = React.useState('');
+  const [search, setSearch] = React.useState('Uga');
+  const [queryDebounced, setQueryDebounced] = React.useState('Uga');
   const delayedQuery = React.useRef(
     debounce((q: string) => setQueryDebounced(q), 1500)
   ).current;

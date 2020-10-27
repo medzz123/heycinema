@@ -10,7 +10,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const response = await axios.get(url);
-
+    console.log('Actual response', response);
     return res.status(200).json(response.data);
   } catch (err) {
     return res.status(500).json({ error: 'Failed to call omd' });
