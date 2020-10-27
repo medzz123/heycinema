@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Card /> should render without throwing an error and match snapshot 1`] = `
+<div
+  className="sc-bdnylx cNEHbd"
+>
+  <div
+    className="sc-gtssRu hlwygE"
+  />
+  <div
+    className="sc-dlnjPT cKmuUl"
+  >
+    <div>
+      <h1
+        className="sc-hKFyIo iVOQiM"
+      >
+        Test Sample
+      </h1>
+      <p
+        className="sc-eCApGN UjWI"
+      >
+        0.3
+      </p>
+    </div>
+    <p
+      className="sc-jSFkmK cJhice"
+    >
+      2015
+    </p>
+  </div>
+</div>
+`;

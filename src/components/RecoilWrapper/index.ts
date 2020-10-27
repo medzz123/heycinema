@@ -1,1 +1,1 @@
-export {default} from './RecoilWrapper'
+export { default } from './RecoilWrapper';

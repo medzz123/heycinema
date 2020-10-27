@@ -1,11 +1,12 @@
 import Card from '@components/Card';
 import Header from '@components/Header';
 import Input from '@components/Input';
+import { Row } from '@components/Layout';
 import { moviesQuery } from '@state/movies';
+import debounce from 'lodash.debounce';
 import React from 'react';
 import { useRecoilValueLoadable } from 'recoil';
-import debounce from 'lodash.debounce';
-import { Row } from '@components/Layout';
+
 import { Center } from './Home.styles';
 
 const Home = () => {

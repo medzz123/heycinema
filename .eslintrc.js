@@ -1,7 +1,7 @@
 module.exports = {
     root: true,
     parser: '@typescript-eslint/parser',
-    plugins: ['simple-import-sort'],
+    plugins: ['simple-import-sort', 'react-hooks'],
     parserOptions: {
       ecmaFeatures: { jsx: true },
     },
@@ -18,7 +18,6 @@ module.exports = {
       // Prettier plugin and recommended rules
       'prettier/@typescript-eslint',
       'plugin:prettier/recommended',
-      'react-hooks'
     ],
     rules: {
       // Next js JSX fix

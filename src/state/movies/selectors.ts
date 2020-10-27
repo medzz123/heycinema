@@ -1,5 +1,5 @@
-import { selectorFamily } from 'recoil';
 import axios, { AxiosResponse } from 'axios';
+import { selectorFamily } from 'recoil';
 
 const callMovieApi = async (name: string) => {
   return await axios.get(`/api/movies/${name}`);
