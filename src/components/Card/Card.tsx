@@ -1,4 +1,3 @@
-import { release } from 'os';
 import React from 'react';
 
 import { CardProps } from './Card.models';
@@ -15,7 +14,7 @@ const Card: React.FC<CardProps> = (props) => {
   const { name, image, rating, releaseYear } = props;
   return (
     <CardContainer>
-      <ImageContainer>{image}</ImageContainer>
+      <ImageContainer url={image} />
       <ContentContainer>
         <div>
           <MovieName>{name}</MovieName>

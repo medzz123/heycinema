@@ -1,21 +1,31 @@
 import { selectorFamily } from 'recoil';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 const callMovieApi = async (name: string) => {
-  return await axios.get<{ error: any }>(`/api/movies/${name}`);
+  return await axios.get(`/api/movies/${name}`);
 };
 
-const moviesQuery = selectorFamily<any, { name: string }>({
+const moviesQuery = selectorFamily({
   key: 'MoviesQuery',
-  get: ({ name }) => async () => {
-    const response = await callMovieApi(name);
+  get: (name) => async () => {
+    try {
+      const response: AxiosResponse<{
+        Response?: string;
+        Error?: string;
+        Title: string;
+        imdbRating: string;
+        Poster: string;
+        Released: string;
+      }> = await callMovieApi(name as string);
 
-    //   if (response.error) {
-    //     throw response.error;
-    //   }
+      if (response.data.Error) {
+        throw response.data.Error;
+      }
 
-    console.log('Response', response);
-    return response.data;
+      return response.data;
+    } catch (err) {
+      console.warn('Fatal occurred');
+    }
   },
 });
 

@@ -3,35 +3,55 @@ import Header from '@components/Header';
 import Input from '@components/Input';
 import { moviesQuery } from '@state/movies';
 import React from 'react';
-import { atom, useRecoilState } from 'recoil';
-
-const textState = atom({
-  key: 'textState', // unique ID (with respect to other atoms/selectors)
-  default: '', // default value (aka initial value)
-});
+import { useRecoilValueLoadable } from 'recoil';
+import debounce from 'lodash.debounce';
+import { Row } from '@components/Layout';
+import { Center } from './Home.styles';
 
 const Home = () => {
   const [search, setSearch] = React.useState('');
-  const [text, setText] = useRecoilState(textState);
+  const [queryDebounced, setQueryDebounced] = React.useState('');
+  const delayedQuery = React.useRef(
+    debounce((q: string) => setQueryDebounced(q), 1500)
+  ).current;
 
-  const onChange = (event) => {
-    setText(event.target.value);
+  const movie = useRecoilValueLoadable(moviesQuery(queryDebounced));
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    delayedQuery(e.target.value);
   };
-
 
   return (
     <div>
       <Header />
-      <Card name="Home" rating="5" image="123" releaseYear="2018" />
-      {/* <p>{movies}</p> */}
-  <p>{text}</p>
-  <input type="text" value={text} onChange={onChange} />
-      <Input
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-        }}
-      />
+      <Row />
+      <Center>
+        <Input value={search} onChange={onChange} />
+      </Center>
+      <Row />
+      <Center>
+        {movie.state === 'hasValue' ? (
+          <>
+            {!movie.contents ? (
+              <p>There has been an error, please try again</p>
+            ) : movie.contents.Error ? (
+              <p>{movie.contents.Error}</p>
+            ) : (
+              <Card
+                name={movie.contents.Title}
+                rating={movie.contents.imdbRating}
+                image={movie.contents.Poster}
+                releaseYear={movie.contents.Released}
+              />
+            )}
+          </>
+        ) : movie.state === 'loading' ? (
+          <p>Loading...</p>
+        ) : (
+          <p>There has been an error, please try again</p>
+        )}
+      </Center>
     </div>
   );
 };

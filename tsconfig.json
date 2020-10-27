@@ -25,6 +25,7 @@
       "@pages/*": ["src/pages/*"],
       "@typings/*": ["src/typings/*"],
       "@state/*": ["src/state/*"],
+      "@assets/*": ["src/assets/*"],
     }
   },
   "include": [

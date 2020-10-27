@@ -3,13 +3,20 @@ import styled from 'styled-components';
 export const CardContainer = styled.div`
   border-radius: 10px;
   background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   width: 400px;
   height: 125px;
+  transition: transform 200ms ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.div<{ url: string }>`
   width: 35%;
+  background-image: url(${(p) => p.url});
 `;
 
 export const ContentContainer = styled.div`
